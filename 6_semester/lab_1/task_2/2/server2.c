@@ -36,6 +36,7 @@ int main()
 		return 1;
 	}
 
+	// ctrl c
 	signal(SIGINT, handler);
     signal(SIGTERM, handler);
 

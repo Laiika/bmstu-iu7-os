@@ -30,8 +30,8 @@ int main()
 	}
 
 	struct sockaddr server; // заполняю поля структуры sockaddr
-	server.sa_family = AF_UNIX;
-	strcpy(server.sa_data, SOCK_NAME);
+	server.sa_family = AF_UNIX; // сокеты в пространстве файловых имён
+	strcpy(server.sa_data, SOCK_NAME); // указываю имя файла 
 	socklen_t serverlen = sizeof(struct sockaddr);
 
 	// клиент посылает сообщение серверу
@@ -42,6 +42,7 @@ int main()
 	}
 	printf("Client send message: %d\n", getpid());
 
+	// получаю от сервера сообщение
 	int bytes = recvfrom(fd, buf, sizeof(buf), 0, &server, &serverlen);
 	if (bytes < 0)
 	{
